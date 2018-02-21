@@ -1,22 +1,37 @@
 package libreplan;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+//import org.openqa.selenium.support.PageFactory;
 
 import libreplanException.TestException;
 
 public class TestCreationTypeAvancement {
 
 
+	String browser = System.getProperty("navigateur");
 	WebDriver driver;
-
 	
 	@Before
-	public void setup(){
-	driver = new FirefoxDriver();		
+	public void setup() throws MalformedURLException {
+		
+	// RAJOUT HELO POUR TEST GRID //
+		
+
+	DesiredCapabilities capabilities = new DesiredCapabilities();
+	capabilities.setBrowserName(browser);
+	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+	
+	// FIN RAJOUT HELO POUR TEST GRID //	
+		
+	//driver = new FirefoxDriver();		
 	driver.get("http://localhost:8080/libreplan");
 
 	}

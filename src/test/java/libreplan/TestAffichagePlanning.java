@@ -1,39 +1,54 @@
 package libreplan;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TestAffichagePlanning {
 	
-WebDriver wd;
+	String browser = System.getProperty("navigateur");
+	WebDriver driver;
 	
 	@Before
-	public void setup(){
-		System.setProperty("webdriver.firefox.bin", "C://Program Files (x86)//Mozilla Firefox//firefox.exe");
-		wd = new FirefoxDriver();
-		wd.navigate().to("http://localhost:8080/libreplan");
+	public void setup() throws MalformedURLException {
+		
+	// RAJOUT HELO POUR TEST GRID //
+		
+
+	DesiredCapabilities capabilities = new DesiredCapabilities();
+	capabilities.setBrowserName(browser);
+	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+	
+	// FIN RAJOUT HELO POUR TEST GRID //	
+		
+	//driver = new FirefoxDriver();
+		driver.navigate().to("http://localhost:8080/libreplan");
 	}
 	
 	@Test
 	public void testAjouterTaches() throws Exception{
 		
 		//PDT1 : Se connecter à l'application
-		LoginPage page = new LoginPage(wd);
+		LoginPage page = new LoginPage(driver);
 		MenuPage accueil = page.connexion("admin", "admin");
 		Thread.sleep(1000);
 		
 		//PDT2 : Accéder à la liste des projets
 		accueil.projectsList();
-		MenuPage page2 = new MenuPage(wd);
+		MenuPage page2 = new MenuPage(driver);
 		AccueilProjetPage2 accueilProjetPage2 = page2.accueilProjetPage2();
 		
 		//PDT3 : Accéder à la page d'édition du projet
 		accueilProjetPage2.projetDetail();
 		Thread.sleep(1000);
 		accueilProjetPage2.affichageOngletProjet();
-		AccueilProjetPage2 page3 = new AccueilProjetPage2(wd);
+		AccueilProjetPage2 page3 = new AccueilProjetPage2(driver);
 		
 		//PDT4 : Accéder à la page de plannification du projet
 		PlanningPage planningPage = page3.planningPage();

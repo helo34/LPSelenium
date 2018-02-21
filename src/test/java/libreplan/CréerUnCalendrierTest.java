@@ -1,6 +1,9 @@
 package libreplan;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,16 +11,28 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class CréerUnCalendrierTest {
 
+	String browser = System.getProperty("navigateur");
 	WebDriver driver;
-
+	
+	@Before
+	public void setup() throws MalformedURLException {
 		
-		@Before
-		public void setup(){
-		driver = new FirefoxDriver();
+	// RAJOUT HELO POUR TEST GRID //
+		
+
+	DesiredCapabilities capabilities = new DesiredCapabilities();
+	capabilities.setBrowserName(browser);
+	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+	
+	// FIN RAJOUT HELO POUR TEST GRID //	
+		
+	//driver = new FirefoxDriver();
 		driver.get("http://localhost:8080/libreplan");
 		}
 		
@@ -142,7 +157,7 @@ public class CréerUnCalendrierTest {
 		CalendarsListPage page10 = page9.clicBoutonSaveCalendars();		
 		 
 		// Le message suivant est affiché : "Calendrier de base "Calendrier - Test 2" enregistré"
-		boolean messageConfirmation = driver.findElement(By.className("message_INFO")).isDisplayed();
+		//boolean messageConfirmation = driver.findElement(By.className("message_INFO")).isDisplayed();
 		
 		// Dans le tableau, calendrier "Calendrier - Test 2"  présent et n'est pas affiché en tant que sous-calendrier du calendrier "Calendrier - Test 1"
 		Assert.assertTrue(page10.contenuTableauCalendar.getText().contains("Calendrier - Test 2"));
