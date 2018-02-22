@@ -21,13 +21,14 @@ public class TestCreerProjet {
 	// RAJOUT HELO POUR TEST GRID //
 		
 
-	DesiredCapabilities capabilities = new DesiredCapabilities();
-	capabilities.setBrowserName(browser);
-	driver = new RemoteWebDriver(new URL("http://192.168.2.110:4444/wd/hub"), capabilities);
+	//DesiredCapabilities capabilities = new DesiredCapabilities();
+	//capabilities.setBrowserName(browser);
+	//driver = new RemoteWebDriver(new URL("http://192.168.2.110:4444/wd/hub"), capabilities);
 	
 	// FIN RAJOUT HELO POUR TEST GRID //	
-		
-	//driver = new FirefoxDriver();
+	
+	System.setProperty("webdriver.gecko.driver", "C:\\Users\\Formation\\Downloads\\geckodriver.exe");
+	driver = new FirefoxDriver();
 	driver.get("http://192.168.2.87:8087/libreplan");
 	}
 	
@@ -37,7 +38,7 @@ public class TestCreerProjet {
 		//PDT1 : Se connecter à l'application
 		LoginPage page = new LoginPage(driver);
 		MenuPage accueil = page.connexion("admin", "admin");
-		Thread.sleep(1000);
+	/*	Thread.sleep(5000);
 		
 		//PDT2 : Accéder au formulaire de création d'un projet
 		accueil.boutonCreerProjet();
@@ -68,7 +69,7 @@ public class TestCreerProjet {
 		
 		//PDT11-12 : Vérifier la création du projet et de ses informations
 		projetPage.verifierNomProjet();
-		projetPage.verifierParamProjet("PROJET_TEST1", "PRJTEST001");
+		projetPage.verifierParamProjet("PROJET_TEST1", "PRJTEST001");*/
 	}
 
 }

@@ -32,7 +32,8 @@ protected final WebDriver driver;
 		this.champLogin.sendKeys(login);
 		this.champPassword.sendKeys(password);
 		this.boutonConnexion.click();
-		return new MenuPage(driver);
+		//return new MenuPage(driver);
+		return null;
 	}
 	
 	public TableauDeBordPage connexionUser(String login, String password){
