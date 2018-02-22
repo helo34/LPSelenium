@@ -15,6 +15,13 @@ public class TestCreerProjet {
 	String browser = System.getProperty("navigateur");
 	WebDriver driver;
 	
+	private String getParamater(String string) {	
+		if(browser.equalsIgnoreCase("ie")) {
+			browser="internet explorer";
+		}		
+		return browser;
+	}
+	
 	@Before
 	public void setup() throws MalformedURLException {
 		
@@ -22,7 +29,7 @@ public class TestCreerProjet {
 		
 
 	DesiredCapabilities capabilities = new DesiredCapabilities();
-	capabilities.setBrowserName(browser);
+	capabilities.setBrowserName(getParamater("browser"));
 	driver = new RemoteWebDriver(new URL("http://192.168.2.110:4444/wd/hub"), capabilities);
 	
 	// FIN RAJOUT HELO POUR TEST GRID //	
@@ -32,6 +39,8 @@ public class TestCreerProjet {
 	driver.get("http://192.168.2.87:8087/libreplan");
 	}
 	
+
+
 	@Test
 	public void testNouveauProjet() throws Exception{
 		
