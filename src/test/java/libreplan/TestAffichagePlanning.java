@@ -23,12 +23,12 @@ public class TestAffichagePlanning {
 
 	DesiredCapabilities capabilities = new DesiredCapabilities();
 	capabilities.setBrowserName(browser);
-	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+	driver = new RemoteWebDriver(new URL("http://192.168.2.110:4444/wd/hub"), capabilities);
 	
 	// FIN RAJOUT HELO POUR TEST GRID //	
 		
 	//driver = new FirefoxDriver();
-		driver.navigate().to("http://localhost:8080/libreplan");
+		driver.navigate().to("http://192.168.2.87:8087/libreplan");
 	}
 	
 	@Test

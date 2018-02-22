@@ -23,14 +23,14 @@ public class TestImp {
 
 	DesiredCapabilities capabilities = new DesiredCapabilities();
 	capabilities.setBrowserName(browser);
-	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+	driver = new RemoteWebDriver(new URL("http://192.168.2.110:4444/wd/hub"), capabilities);
 	
 	// FIN RAJOUT HELO POUR TEST GRID //	
 		
 	//driver = new FirefoxDriver();
 		//System.setProperty("webdriver.firefox.bin", "C://Program Files (x86)//Mozilla Firefox//firefox.exe");
 		//wd = new FirefoxDriver();
-		driver.navigate().to("http://localhost:8080/libreplan");
+		driver.navigate().to("http://192.168.2.87:8087/libreplan");
 	}
 	
 	@Test
