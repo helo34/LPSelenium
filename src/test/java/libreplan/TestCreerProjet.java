@@ -79,7 +79,7 @@ public class TestCreerProjet {
 		//PDT11-12 : Vérifier la création du projet et de ses informations
 		projetPage.verifierNomProjet();
 		projetPage.verifierParamProjet("PROJET_TEST1", "PRJTEST001");*/
-		driver.quit();
+		//driver.quit();
 	}
 
 }
